@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduBuddy AI — AI-Powered Educational Assistant for Students & Teachers</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <a href="#" class="brand" onclick="EduBuddy.switchTab('dashboard'); return false;">
+      <span>🎓 EduBuddy AI</span>
+      <span class="brand-badge">Smart Study Assistant</span>
+    </a>
+
+    <!-- Navigation Tabs -->
+    <nav>
+      <ul class="nav-tabs">
+        <li>
+          <button class="nav-tab-btn active" data-tab="dashboard">
+            <span>🏠</span> Overview
+          </button>
+        </li>
+        <li>
+          <button class="nav-tab-btn" data-tab="tab-tutor">
+            <span>🤖</span> Study Assistant
+          </button>
+        </li>
+        <li>
+          <button class="nav-tab-btn" data-tab="tab-quiz">
+            <span>📝</span> Tests & Prep
+          </button>
+        </li>
+        <li>
+          <button class="nav-tab-btn" data-tab="tab-notes">
+            <span>📄</span> Smart Notes
+          </button>
+        </li>
+        <li>
+          <button class="nav-tab-btn" data-tab="tab-timetable">
+            <span>📅</span> Timetable
+          </button>
+        </li>
+        <li>
+          <button class="nav-tab-btn" data-tab="tab-career">
+            <span>🧭</span> Careers
+          </button>
+        </li>
+        <li>
+          <button class="nav-tab-btn" data-tab="tab-teacher">
+            <span>🍎</span> Teacher Hub
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Header Actions -->
+    <div class="header-actions">
+      <button class="icon-btn" id="open-settings-btn" title="API Key & Settings">
+        ⚙️
+      </button>
+      <button class="icon-btn" id="theme-toggle-btn" title="Toggle Dark/Light Mode">
+        🌙
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- 0. DASHBOARD TAB -->
+    <div class="tab-pane active" id="dashboard">
+      <div class="hero-banner">
+        <h1>Your Smart AI Study Friend & Academic Copilot</h1>
+        <p>
+          EduBuddy AI helps students master difficult lessons, ace their exams with mock tests, summarize lengthy study materials, organize daily schedules, and discover rewarding career roadmaps.
+        </p>
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button class="btn btn-secondary" onclick="EduBuddy.switchTab('tab-tutor')">
+            🤖 Ask Study Assistant
+          </button>
+          <button class="btn btn-secondary" onclick="EduBuddy.switchTab('tab-quiz')">
+            📝 Take Practice Quiz
+          </button>
+          <button class="btn btn-secondary" onclick="EduBuddy.switchTab('tab-notes')">
+            📄 Summarize Notes
+          </button>
+        </div>
+
+        <div class="hero-stats">
+          <div class="stat-card">
+            <div class="stat-value" id="stat-streak">3 Days</div>
+            <div class="stat-label">🔥 Daily Study Streak</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-quizzes">8</div>
+            <div class="stat-label">📝 Practice Quizzes Taken</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-notes">5</div>
+            <div class="stat-label">📄 Study Materials Summarized</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-value" id="stat-time">45m</div>
+            <div class="stat-label">⏱️ Focus Study Today</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 Core Features Grid -->
+      <h2 style="font-size: 1.35rem; font-weight: 800; margin-bottom: 1.25rem;">
+        Explore EduBuddy AI Core Features
+      </h2>
+
+      <div class="features-grid">
+        <div class="feature-box" data-route="tab-tutor">
+          <div class="feature-icon-badge">🤖</div>
+          <h3 class="feature-title">1. AI Study Assistant</h3>
+          <p class="feature-desc">
+            Break down tough subjects step-by-step with analogies, Socratic dialogue, and interactive level adjustments.
+          </p>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">Open Tutor →</span>
+        </div>
+
+        <div class="feature-box" data-route="tab-quiz">
+          <div class="feature-icon-badge">📝</div>
+          <h3 class="feature-title">2. Tests and Exam Prep</h3>
+          <p class="feature-desc">
+            Mock tests, timed practice exams, diagnostic error breakdowns, and 3D flip flashcards for active recall.
+          </p>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">Start Practicing →</span>
+        </div>
+
+        <div class="feature-box" data-route="tab-notes">
+          <div class="feature-icon-badge">📄</div>
+          <h3 class="feature-title">3. Smart Notes & Summarizer</h3>
+          <p class="feature-desc">
+            Condense lengthy chapters, PDFs, and notes into bite-sized bullets, key terms, and exportable cheat-sheets.
+          </p>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">Summarize Material →</span>
+        </div>
+
+        <div class="feature-box" data-route="tab-timetable">
+          <div class="feature-icon-badge">📅</div>
+          <h3 class="feature-title">4. Study Timetable</h3>
+          <p class="feature-desc">
+            Plan your daily study hours, balance difficult subjects, and maintain peak focus with a built-in Pomodoro timer.
+          </p>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">Organize Schedule →</span>
+        </div>
+
+        <div class="feature-box" data-route="tab-career">
+          <div class="feature-icon-badge">🧭</div>
+          <h3 class="feature-title">5. Career Guidance</h3>
+          <p class="feature-desc">
+            Discover potential degrees, college roadmaps, salary projections, and high school subjects to prioritize.
+          </p>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">Explore Careers →</span>
+        </div>
+
+        <div class="feature-box" data-route="tab-teacher">
+          <div class="feature-icon-badge">🍎</div>
+          <h3 class="feature-title">Bonus: Teacher Hub</h3>
+          <p class="feature-desc">
+            Empower educators to generate printable quizzes, student worksheets, answer keys, and grading rubrics instantly.
+          </p>
+          <span style="font-size: 0.85rem; font-weight: 700; color: var(--primary);">Teacher Tools →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 1. AI STUDY ASSISTANT TAB -->
+    <div class="tab-pane" id="tab-tutor">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🤖</span> 1. AI Study Assistant & Socratic Tutor
+          </div>
+          <span class="tag-badge">Step-by-Step Learning</span>
+        </div>
+
+        <div class="tutor-layout">
+          <!-- Sidebar Controls -->
+          <div>
+            <div class="form-group">
+              <label class="form-label">Subject</label>
+              <select class="form-select" id="tutor-subject-select">
+                <option value="Physics">Physics</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Biology">Biology</option>
+                <option value="Chemistry">Chemistry</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="History">History & Social Studies</option>
+                <option value="General">General Academic</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Explanation Depth</label>
+              <select class="form-select" id="tutor-level-select">
+                <option value="ELI5">ELI5 (Explain Like I'm 5 / Simple Analogy)</option>
+                <option value="High School" selected>High School Level</option>
+                <option value="College">College / Deep Academic Dive</option>
+                <option value="Exam Revision">Quick Exam Revision Points</option>
+              </select>
+            </div>
+
+            <div style="margin-top: 1.25rem;">
+              <label class="form-label">✨ Popular Concepts to Try:</label>
+              <div style="display: flex; flex-direction: column; gap: 0.4rem;">
+                <button class="btn btn-secondary btn-sm tutor-preset-chip" data-subject="Physics" data-query="Quantum Superposition">
+                  ⚛️ Quantum Superposition
+                </button>
+                <button class="btn btn-secondary btn-sm tutor-preset-chip" data-subject="Biology" data-query="Photosynthesis">
+                  🌿 Photosynthesis Mechanism
+                </button>
+                <button class="btn btn-secondary btn-sm tutor-preset-chip" data-subject="Mathematics" data-query="Calculus Derivatives">
+                  📐 Calculus Derivatives
+                </button>
+                <button class="btn btn-secondary btn-sm tutor-preset-chip" data-subject="Computer Science" data-query="Recursion">
+                  💻 Recursion in Algorithms
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Chat Area -->
+          <div>
+            <div class="chat-history" id="tutor-chat-history">
+              <div class="chat-msg assistant">
+                <div class="chat-bubble">
+                  <strong>🤖 EduBuddy AI Study Assistant:</strong><br>
+                  Hi there! What subject or topic are you learning today? Type any question or select a topic on the left — I'll break it down for you step-by-step with intuitive real-world analogies!
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem;">
+              <input type="text" class="form-input" id="tutor-question-input" placeholder="e.g. Explain how mitochondria produce ATP step-by-step...">
+              <button class="btn btn-primary" id="ask-tutor-btn">
+                Ask EduBuddy
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. TESTS AND EXAM PREPARATION TAB -->
+    <div class="tab-pane" id="tab-quiz">
+      <!-- Quiz Setup Card -->
+      <div class="card" id="quiz-setup-card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📝</span> 2. Tests & Exam Preparation
+          </div>
+          <span class="tag-badge">Mock Exams & Quizzes</span>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Generate timed mock quizzes with comprehensive answer explanations, or test your memory with interactive 3D flashcards.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <div class="form-group">
+            <label class="form-label">Subject</label>
+            <select class="form-select" id="quiz-subject-select">
+              <option value="Biology">Biology (Cells, Genetics)</option>
+              <option value="Physics">Physics (Mechanics, Optics)</option>
+              <option value="Mathematics">Mathematics (Calculus, Algebra)</option>
+              <option value="Computer Science">Computer Science (Data Structures)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Difficulty</label>
+            <select class="form-select" id="quiz-difficulty-select">
+              <option value="Easy">Easy (Fundamentals)</option>
+              <option value="Medium" selected>Medium (Standard Exam)</option>
+              <option value="Hard">Hard (Competitive & Olympiad)</option>
+            </select>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="start-quiz-btn">
+          🚀 Generate & Start Timed Mock Quiz
+        </button>
+      </div>
+
+      <!-- Active Quiz Card (Hidden initially) -->
+      <div class="card" id="quiz-active-card" style="display: none;">
+        <div class="card-header">
+          <div id="quiz-progress-text" style="font-weight: 700; color: var(--primary);">
+            Question 1 of 3
+          </div>
+          <div id="quiz-timer-display" style="font-weight: 800; font-family: 'JetBrains Mono', monospace; color: var(--warning);">
+            ⏱️ 03:00
+          </div>
+        </div>
+
+        <h3 id="quiz-question-title" style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;"></h3>
+
+        <div class="quiz-options-list" id="quiz-options-container"></div>
+
+        <div id="quiz-explanation-box" style="display: none; background: var(--bg-main); border-left: 4px solid var(--secondary); padding: 1rem; border-radius: var(--radius-sm); margin: 1rem 0; font-size: 0.9rem;"></div>
+
+        <div id="quiz-nav-actions" style="display: flex; justify-content: flex-end; margin-top: 1.25rem;"></div>
+      </div>
+
+      <!-- Quiz Results Card (Hidden initially) -->
+      <div class="card" id="quiz-results-card" style="display: none; text-align: center; padding: 3rem 2rem;">
+        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🏆</div>
+        <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem;">Mock Exam Complete!</h2>
+        <div id="quiz-final-score" style="font-size: 3.5rem; font-weight: 800; color: var(--primary); margin: 0.5rem 0;">100%</div>
+        <p id="quiz-final-stats" style="color: var(--text-muted); font-size: 1.05rem; margin-bottom: 1.5rem;"></p>
+        <button class="btn btn-primary" id="retake-quiz-btn">Take Another Test 🔄</button>
+      </div>
+
+      <!-- Flashcards Section -->
+      <div class="card" style="margin-top: 2rem;">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🎴</span> Active Recall: Interactive Flashcards
+          </div>
+          <span id="flashcard-counter" class="tag-badge">Card 1 of 6</span>
+        </div>
+
+        <div class="flashcard-wrapper">
+          <div class="flashcard-inner" id="flashcard-interactive">
+            <div class="flashcard-front" id="flashcard-front-content">
+              <h3>Click to Flip</h3>
+            </div>
+            <div class="flashcard-back" id="flashcard-back-content">
+              <p>Back content</p>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 1rem;">
+          <button class="btn btn-secondary btn-sm" id="prev-card-btn">← Previous Card</button>
+          <button class="btn btn-primary btn-sm" id="next-card-btn">Next Card →</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. SMART NOTES TAB -->
+    <div class="tab-pane" id="tab-notes">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>📄</span> 3. Smart Notes & Material Summarizer
+          </div>
+          <span class="tag-badge">Key Points & Exam Traps</span>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1rem;">
+          Paste your lecture transcripts, textbook chapters, or study notes below. EduBuddy extracts core takeaways, a vocabulary glossary, and high-yield exam traps.
+        </p>
+
+        <!-- Preloaded Samples -->
+        <div style="display: flex; gap: 0.5rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap;">
+          <span style="font-size: 0.85rem; font-weight: 600; color: var(--text-muted);">Load Demo Notes:</span>
+          <button class="btn btn-secondary btn-sm load-note-sample-btn" data-sample="biology">🌿 Cell Biology</button>
+          <button class="btn btn-secondary btn-sm load-note-sample-btn" data-sample="history">🏛️ Industrial Revolution</button>
+          <button class="btn btn-secondary btn-sm load-note-sample-btn" data-sample="cs">💻 Machine Learning</button>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Note Title</label>
+          <input type="text" class="form-input" id="note-title-input" placeholder="e.g. Chapter 4: Cell Transport Mechanisms">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Notes Content</label>
+          <textarea class="form-textarea" id="note-raw-textarea" rows="6" placeholder="Paste your lengthy notes, lecture transcript, or study material here..."></textarea>
+        </div>
+
+        <button class="btn btn-primary" id="summarize-notes-btn">
+          ✨ Generate Smart Summary & Flashcards
+        </button>
+      </div>
+
+      <!-- Output Container -->
+      <div id="smart-notes-output"></div>
+    </div>
+
+    <!-- 4. STUDY TIMETABLE TAB -->
+    <div class="tab-pane" id="tab-timetable">
+      <div style="display: grid; grid-template-columns: 1fr 340px; gap: 1.5rem;">
+        <!-- Left: Timetable Planner -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <span>📅</span> 4. Daily Study Schedule & Task Planner
+            </div>
+            <div style="display: flex; gap: 0.35rem;">
+              <button class="btn btn-secondary btn-sm schedule-preset-btn" data-preset="balanced">Balanced</button>
+              <button class="btn btn-secondary btn-sm schedule-preset-btn" data-preset="crunch">Exam Crunch</button>
+            </div>
+          </div>
+
+          <!-- Add Task Form -->
+          <div style="display: grid; grid-template-columns: 140px 140px 1fr auto; gap: 0.5rem; margin-bottom: 1.25rem;">
+            <input type="text" class="form-input" id="task-time-input" placeholder="Time (e.g. 4 PM)">
+            <input type="text" class="form-input" id="task-subject-input" placeholder="Subject">
+            <input type="text" class="form-input" id="task-desc-input" placeholder="Study goal...">
+            <button class="btn btn-primary" id="add-task-btn">Add Block</button>
+          </div>
+
+          <div id="timetable-tasks-list"></div>
+        </div>
+
+        <!-- Right: Pomodoro Timer -->
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">
+              <span>⏱️</span> Pomodoro Focus
+            </div>
+            <span class="tag-badge">Deep Work</span>
+          </div>
+
+          <div class="pomodoro-box">
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+              <button class="btn btn-primary btn-sm" id="pomodoro-mode-focus">25m Focus</button>
+              <button class="btn btn-secondary btn-sm" id="pomodoro-mode-break">5m Break</button>
+            </div>
+
+            <div class="timer-circle">
+              <span id="pomodoro-timer-digits">25:00</span>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; width: 100%;">
+              <button class="btn btn-primary" id="pomodoro-start-pause-btn" style="flex: 1;">Start Session ▶</button>
+              <button class="btn btn-secondary" id="pomodoro-reset-btn">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 5. CAREER GUIDANCE TAB -->
+    <div class="tab-pane" id="tab-career">
+      <!-- Career Quiz Card -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🧭</span> 5. Career & Academic Pathway Advisor
+          </div>
+          <span class="tag-badge">Interest Alignment</span>
+        </div>
+
+        <div id="career-quiz-results-banner" style="display: none;"></div>
+
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.25rem;">
+          Not sure which educational path matches your strengths? Answer 2 quick questions to calculate your personalized career match percentage:
+        </p>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; margin-bottom: 1.25rem;">
+          <div>
+            <label class="form-label">1. What subject excites you most in school?</label>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.9rem;">
+              <label><input type="radio" name="career_q1" value="stem" checked> Math, Physics & Computer Science</label>
+              <label><input type="radio" name="career_q1" value="life"> Biology, Chemistry & Medicine</label>
+              <label><input type="radio" name="career_q1" value="business"> Economics, Finance & Statistics</label>
+              <label><input type="radio" name="career_q1" value="arts"> Arts, Design & Human Behavior</label>
+            </div>
+          </div>
+
+          <div>
+            <label class="form-label">2. What problem-solving style do you enjoy most?</label>
+            <div style="display: flex; flex-direction: column; gap: 0.4rem; font-size: 0.9rem;">
+              <label><input type="radio" name="career_q2" value="logic" checked> Building algorithms and logical proofs</label>
+              <label><input type="radio" name="career_q2" value="hands"> Hands-on lab work and prototyping</label>
+              <label><input type="radio" name="career_q2" value="creative"> Visual design and user experience</label>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="submit-career-quiz-btn">
+          🎯 Calculate My Best Career Match
+        </button>
+      </div>
+
+      <!-- Career Roadmaps List -->
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🗺️</span> Curated Career Roadmaps & College Major Guides
+          </div>
+          <select class="form-select" id="career-category-filter" style="width: auto;">
+            <option value="all">All Fields</option>
+            <option value="Computer Science">Computer Science & AI</option>
+            <option value="Healthcare">Healthcare & Bio</option>
+            <option value="Business">Business & Quant</option>
+            <option value="Environmental">Clean Energy</option>
+            <option value="Design">Product Design</option>
+          </select>
+        </div>
+
+        <div id="careers-grid-container" style="display: flex; flex-direction: column; gap: 1.25rem;"></div>
+      </div>
+    </div>
+
+    <!-- 6. TEACHER HUB TAB -->
+    <div class="tab-pane" id="tab-teacher">
+      <div class="card">
+        <div class="card-header">
+          <div class="card-title">
+            <span>🍎</span> Teacher & Educator Hub
+          </div>
+          <span class="tag-badge">Curriculum & Grading</span>
+        </div>
+
+        <p style="color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+          Help teachers manage schoolwork, create printable assessments, and establish fair grading rubrics in seconds.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+          <div class="form-group">
+            <label class="form-label">Grade / Education Level</label>
+            <select class="form-select" id="teacher-grade-select">
+              <option value="Middle School (Grades 6-8)">Middle School (Grades 6-8)</option>
+              <option value="High School (Grades 9-12)" selected>High School (Grades 9-12)</option>
+              <option value="Undergraduate">Undergraduate College</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Lesson / Assessment Topic</label>
+            <input type="text" class="form-input" id="teacher-topic-input" value="Photosynthesis and Plant Respiration">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Question Count</label>
+            <select class="form-select" id="teacher-count-select">
+              <option value="3">3 Questions (Quick Quiz)</option>
+              <option value="5" selected>5 Questions (Standard)</option>
+              <option value="10">10 Questions (Unit Test)</option>
+            </select>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button class="btn btn-primary" id="teacher-gen-quiz-btn">
+            📄 Generate Student Quiz & Answer Key
+          </button>
+          <button class="btn btn-secondary" id="teacher-gen-rubric-btn">
+            📋 Generate 4-Tier Grading Rubric
+          </button>
+        </div>
+      </div>
+
+      <div id="teacher-output-box"></div>
+    </div>
+
+  </main>
+
+  <!-- Settings / API Key Modal -->
+  <div class="modal-overlay" id="settings-modal">
+    <div class="modal-content">
+      <div class="card-header">
+        <div class="card-title">
+          <span>⚙️</span> EduBuddy AI Settings
+        </div>
+        <button class="icon-btn" id="close-settings-btn">✕</button>
+      </div>
+
+      <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1rem;">
+        EduBuddy AI includes rich built-in offline intelligence for instant learning. You can also connect a Google Gemini API key to enable live, unlimited frontier AI responses across any subject!
+      </p>
+
+      <div class="form-group">
+        <label class="form-label">Google Gemini API Key (Optional)</label>
+        <input type="password" class="form-input" id="gemini-api-key-input" placeholder="AIzaSy...">
+        <span style="font-size: 0.75rem; color: var(--text-muted); display: block; margin-top: 0.35rem;">
+          Your key stays safely stored in your browser's local storage and is never sent to third-party servers.
+        </span>
+      </div>
+
+      <div style="display: flex; justify-content: flex-end; gap: 0.5rem; margin-top: 1.5rem;">
+        <button class="btn btn-secondary" onclick="document.getElementById('settings-modal').classList.remove('open')">Cancel</button>
+        <button class="btn btn-primary" id="save-settings-btn">Save Settings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/app.js"></script>
+  <script src="assets/js/studyAssistant.js"></script>
+  <script src="assets/js/examPrep.js"></script>
+  <script src="assets/js/smartNotes.js"></script>
+  <script src="assets/js/studyTimetable.js"></script>
+  <script src="assets/js/careerGuidance.js"></script>
+  <script src="assets/js/teacherHub.js"></script>
+</body>
+</html>

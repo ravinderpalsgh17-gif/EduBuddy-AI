@@ -1,0 +1,1 @@
+# EduBuddy AI backend package
